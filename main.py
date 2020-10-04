@@ -132,7 +132,7 @@ while replay == "yes":
 
     clues = getDividers(randomNum, minNum, maxNum) + isPrime(randomNum) + getNumberOfDigits(randomNum) + isPerfectSquare(randomNum)[0] + isFibonacciNumber(randomNum) + isCatalanNumber(randomNum)
 
-    maxNumberOfClues = round((len(clues) - 5) / 2) + 5
+    maxNumberOfClues = math.ceil((len(clues) - 5) / 2) + 5
     print("You will have " + str(maxNumberOfClues) + " clues before losing.")
     
     while found == False and count != maxNumberOfClues:
