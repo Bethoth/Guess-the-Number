@@ -94,12 +94,13 @@ os.system("cls")
 print("""
 Welcome in Guess the Number! This is a game where the computer chooses a random number and you must guess it!
 
-There are 5 levels of difficulty:
+There are 6 levels of difficulty:
 1. Very easy: the number is between 1 and 20.
 2. Easy: the number is between 1 and 50.
 3. Medium: the number is between 1 and 100.
 4. Hard: the number is between 1 and 250.
 5. Very hard: the number is between 1 and 500.
+6. Insane: the number is between 1 and 2000.
 
 Before each of your tries to guess the number, the computer will give you a clue to guess it.
 In addition, after each of your tries, the computer will tell you if the random number is greater or smaller than your guess.
@@ -125,6 +126,9 @@ while replay == "yes":
     elif level == 5:
         print("You chose level 5. The computer will so choose a random number between 1 and 500.")
         minNum, maxNum = 1, 500
+    elif level == 6:
+        print("You chose level 6. The computer will so choose a random number between 1 and 2000.")
+        minNum, maxNum = 1, 2000
 
     randomNum = random.randint(minNum, maxNum)
 
