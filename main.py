@@ -90,6 +90,20 @@ def isBellNumber(num):
         return ["The number is not a Bell number."]
 
 
+def getSumOfDigits(num):
+    result = 0
+    while num:
+        result, num = result + (num % 10), num // 10
+    return ["The sum of the number's digits is " + str(result)]
+
+
+def getProductOfDigits(num):
+    result = 1
+    while num:
+        result, num = result * (num % 10), num // 10
+    return ["The product of the number's digits is " + str(result)]
+
+
 os.system("cls")
 print("""
 Welcome in Guess the Number! This is a game where the computer chooses a random number and you must guess it!
@@ -134,7 +148,7 @@ while replay == "yes":
 
     count, found = 0, False
 
-    clues = getDividers(randomNum, minNum, maxNum) + isPrime(randomNum) + getNumberOfDigits(randomNum) + isPerfectSquare(randomNum)[0] + isFibonacciNumber(randomNum) + isCatalanNumber(randomNum)
+    clues = getDividers(randomNum, minNum, maxNum) + isPrime(randomNum) + getNumberOfDigits(randomNum) + isPerfectSquare(randomNum)[0] + isFibonacciNumber(randomNum) + isCatalanNumber(randomNum) + getSumOfDigits(randomNum) + getProductOfDigits(randomNum)
 
     maxNumberOfClues = math.ceil((len(clues) - 5) / 2) + 5
     print("You will have " + str(maxNumberOfClues) + " clues before losing.")
