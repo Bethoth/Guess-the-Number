@@ -48,6 +48,48 @@ def isFibonacciNumber(num):
         return ["The number is not a Fibonacci number."]
 
 
+def catalan(n):
+    if n <= 1:
+        return 1
+    else:
+        result = 0
+        for i in range(n):
+            result += catalan(i) + catalan(n - i - 1)
+        return result
+
+
+def isCatalanNumber(num):
+    catalanNumbers = []
+    for i in range(10):
+        catalanNumbers.append(catalan(i))
+
+    if num in catalanNumbers:
+        return ["The number is a Catalan number."]
+    else:
+        return ["The number is not a Catalan number."]
+
+
+def bell(n):
+    bellNum = [[0 for i in range(n + 1)] for j in range(n + 1)]
+    bellNum[0][0] = 1
+    for i in range(1, n + 1):
+        bellNum[i][0] = bellNum[i - 1][i - 1]
+        for j in range(1, i + 1):
+            bellNum[i][j] = bellNum[i - 1][j - 1] + bellNum[i][j - 1]
+    return bellNum[n][0]
+
+
+def isBellNumber(num):
+    bellNumbers = []
+    for i in range(10):
+        bellNumbers.append(bell(i))
+
+    if num in bellNumbers:
+        return ["The number is a Bell number."]
+    else:
+        return ["The number is not a Bell number."]
+
+
 os.system("cls")
 print("""
 Welcome in Guess the Number! This is a game where the computer chooses a random number and you must guess it!
@@ -61,7 +103,7 @@ There are 5 levels of difficulty:
 
 Before each of your tries to guess the number, the computer will give you a clue to guess it.
 In addition, after each of your tries, the computer will tell you if the random number is greater or smaller than your guess.
-You lose if you don't guess the number before the computer has given you the 5th clue.
+You lose if you don't guess the number before the computer has given you the number of clues it will anounce.
 """)
 
 replay = "yes"
@@ -88,9 +130,12 @@ while replay == "yes":
 
     count, found = 0, False
 
-    clues = getDividers(randomNum, minNum, maxNum) + isPrime(randomNum) + getNumberOfDigits(randomNum) + isPerfectSquare(randomNum)[0] + isFibonacciNumber(randomNum)
+    clues = getDividers(randomNum, minNum, maxNum) + isPrime(randomNum) + getNumberOfDigits(randomNum) + isPerfectSquare(randomNum)[0] + isFibonacciNumber(randomNum) + isCatalanNumber(randomNum)
 
-    while found == False and count != 5:
+    maxNumberOfClues = round((len(clues) - 5) / 2) + 5
+    print("You will have " + str(maxNumberOfClues) + " clues before losing.")
+    
+    while found == False and count != maxNumberOfClues:
         clueIndex = random.randint(0, len(clues) - 1)
         print("Clue number " + str(count + 1) + ": " + clues[clueIndex])
         del clues[clueIndex]
