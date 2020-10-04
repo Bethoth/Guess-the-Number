@@ -158,9 +158,9 @@ while replay == "yes":
         print("Clue number " + str(count + 1) + ": " + clues[clueIndex])
         del clues[clueIndex]
 
-        inputNum = int(input("Enter your guess: "))
+        inputNum = int(input("\nEnter your guess: "))
         if inputNum < randomNum:
-            print(str(inputNum) + " is smaller than the number!")
+            print("\n" + str(inputNum) + " is smaller than the number!")
             count += 1
         elif inputNum > randomNum:
             print(str(inputNum) + " is greater than the number!")
